@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Journey Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+        .collapsible {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            width: 100%;
+            outline: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .collapsible:after {
+            content: '\002B';
+            font-size: 13px;
+            float: right;
+        }
+        .collapsible.active:after {
+            content: "\2212";
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f7f7f7;
+        }
+        .reminder-form {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detailed Timetable for Your Trading Journey</h1>
+    <p>This timetable balances education, practice, live trading, and gradual scaling while keeping your targets, risks, and motivations in mind.</p>
+
+    <!-- Phase 1 -->
+    <h2>Phase 1: Education & Paper Trading</h2>
+    <p><strong>Duration:</strong> January 11 - February 15</p>
+    <p><strong>Goal:</strong> Build knowledge and confidence in trading without risking real money.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Week</th>
+                <th>Focus Area</th>
+                <th>Tasks</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Week 1</td>
+                <td>Getting Familiar</td>
+                <td>
+                    - Explore Binance, TradingView, and 3Commas.<br>
+                    - Watch tutorials on basic crypto trading strategies.<br>
+                    - Start learning candlestick patterns (e.g., Doji, Hammer).
+                </td>
+                <td>Motivation: Every master was once a beginner!</td>
+            </tr>
+            <tr>
+                <td>Week 2</td>
+                <td>Learn Indicators</td>
+                <td>
+                    - Understand Moving Averages, RSI, and Bollinger Bands.<br>
+                    - Backtest indicators using historical data on TradingView.
+                </td>
+                <td>Reminder: Don’t overwhelm yourself—focus on 2-3 indicators that complement your style.</td>
+            </tr>
+            <tr>
+                <td>Week 3</td>
+                <td>Risk Management Basics</td>
+                <td>
+                    - Learn position sizing: how much to trade per setup.<br>
+                    - Study stop-loss and take-profit strategies.<br>
+                    - Start creating a trading journal template (Excel or app).
+                </td>
+                <td>Risk: Without stop-losses, even good trades can turn into big losses.</td>
+            </tr>
+            <tr>
+                <td>Week 4</td>
+                <td>Demo Trading</td>
+                <td>
+                    - Use 3Commas or Binance Paper Trading to place demo trades.<br>
+                    - Focus on spotting trends and applying stop-losses correctly.
+                </td>
+                <td>Target: Aim for at least 10 demo trades per week.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Phase 2 -->
+    <h2>Phase 2: Starting Small (Live Trading)</h2>
+    <p><strong>Duration:</strong> February 15 - April 1</p>
+    <p><strong>Goal:</strong> Begin live trading with minimal risk and aim for consistent small profits.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Week</th>
+                <th>Focus Area</th>
+                <th>Tasks</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Week 1</td>
+                <td>Setting Up</td>
+                <td>
+                    - Deposit small starting capital ($100-$200).<br>
+                    - Link Binance to 3Commas for basic bot trading or manual trades.
+                </td>
+                <td>Reminder: Start with money you can afford to lose!</td>
+            </tr>
+            <tr>
+                <td>Week 2</td>
+                <td>Testing Strategies</td>
+                <td>
+                    - Trade using your chosen strategy (e.g., scalping or swing trading).<br>
+                    - Log each trade in your journal with entry/exit, profit/loss, and analysis.
+                </td>
+                <td>Motivation: Small wins build confidence; losses are lessons!</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Phase 3 -->
+    <h2>Phase 3: Gradual Scaling</h2>
+    <p><strong>Duration:</strong> April 2 - December 31</p>
+    <p><strong>Goal:</strong> Scale up trading while targeting consistent monthly growth to fund business goals and save for your car.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Focus Area</th>
+                <th>Tasks</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>April - June</td>
+                <td>Building Consistency</td>
+                <td>
+                    - Reinvest some profits to slightly increase position sizes.<br>
+                    - Split trades: 70% low-risk strategies, 30% high-risk trades.
+                </td>
+                <td>Target: Aim for 5-10% portfolio growth monthly.</td>
+            </tr>
+            <tr>
+                <td>July - August</td>
+                <td>Diversification</td>
+                <td>
+                    - Explore altcoins with higher volatility for faster growth.<br>
+                    - Test new bots or algorithms on 3Commas.
+                </td>
+                <td>Challenge: Volatile coins can offer big wins but carry higher risk. Stay disciplined!</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Reminder Form -->
+    <div class="reminder-form">
+        <h2>Add Custom Reminder</h2>
+        <label for="reminder-message">Message:</label><br>
+        <input type="text" id="reminder-message" placeholder="Enter your reminder message"><br>
+        <label for="reminder-time">Time (e.g., 2025-01-11T15:30):</label><br>
+        <input type="datetime-local" id="reminder-time"><br>
+        <button onclick="addReminder()">Add Reminder</button>
+    </div>
+
+    <script>
+        // Notification Permissions
+        function enableNotifications() {
+            if (!("Notification" in window)) {
+                alert("This browser does not support notifications.");
+                return;
+            }
+            Notification.requestPermission();
+        }
+
+        // Add Custom Reminder
+        const reminders = [];
+        function addReminder() {
+            const message = document.getElementById("reminder-message").value;
+            const time = document.getElementById("reminder-time").value;
+
+            if (!message || !time) {
+                alert("Please enter both a message and a time.");
+                return;
+            }
+
+            const reminderTime = new Date(time);
+            reminders.push({ message, time: reminderTime });
+            alert("Reminder added!");
+
+            const delay = reminderTime - new Date();
+            if (delay > 0) {
+                setTimeout(() => {
+                    new Notification("Trading Reminder", { body: message });
+                }, delay);
+            }
+        }
+
+        // Automatically request permissions
+        enableNotifications();
+    </script>
+</body>
+</html>

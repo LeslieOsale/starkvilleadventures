@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events | Starkville Adventures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Add Google Font for Business Name and Disco Clock -->
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Preload Critical CSS -->
+<link rel="preload" href="styles.css" as="style">
+<link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            background-image: url('https://res.cloudinary.com/dwpr0xrjq/image/upload/v1736143864/beautiful-waterfall-flowers-water-nature-waterfall-hd-wallpaper-ai-generated-free-photo_hamthi.jpg');
+            background-size: contain;
+            color: #333;
+        }
+
+        /* General Header Styling */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgb(68, 68, 68), rgb(183, 186, 183), rgb(3, 75, 31));
+    height: 15vh; /* Maintain height within 20% of viewport */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Header sections */
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo styling */
+.header-left .logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 3px solid #087139ea;
+    transition: width 0.3s ease, height 0.3s ease; /* Smooth resizing */
+}
+
+/* Company name styling */
+.header-left h1 {
+    font-family: 'Tangerine', sans-serif;
+    font-size: 4.5rem;
+    color: #ffffff;
+    margin: 5px 0 0; /* Add space above the name */
+    text-align: center;
+}
+
+/* Center clock styling */
+.header-center .clock {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #fefefe;
+    text-align: center;
+    margin: 5px auto 0;
+}
+
+/* Social icons styling */
+.header-right .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Space above social icons */
+}
+
+.header-right .social-icons a {
+    margin: 0 5px;
+    color: #ffffff;
+    font-size: 1.5rem; /* Default size */
+    transition: color 0.3s ease, font-size 0.3s ease; /* Smooth size adjustment */
+}
+
+.header-right .social-icons a:hover {
+    color: #8cb3a8; /* Light Green hover effect */
+}
+
+/* Responsive Styling for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;   /* Center align for better layout */
+        height: auto;          /* Adjust height to content */
+    }
+
+    /* Logo adjustments */
+    .header-left .logo {
+        width: 50px; /* Smaller logo */
+        height: 50px;
+    }
+
+    /* Company name adjustments */
+    .header-left h1 {
+        font-size: 3rem; /* Adjust font size */
+    }
+
+    /* Center clock adjustments */
+    .header-center .clock {
+        display: block; /* Ensure timestamp is visible */
+        font-size: 1rem; /* Adjust clock size */
+    }
+
+    /* Social icons adjustments */
+    .header-right .social-icons a {
+        font-size: 1.2rem; /* Reduce size proportionately */
+    }
+}
+
+/* Further Adjustments for Extra Small Screens */
+@media screen and (max-width: 480px) {
+    .header-left {
+        display: flex;
+        flex-direction: column; /* Stack logo and name */
+        align-items: center;
+    }
+
+    .header-left .logo {
+        width: 40px; /* Resize logo */
+        height: 40px;
+    }
+
+    .header-left h1 {
+        font-size: 2.5rem; /* Further reduce font size */
+        margin: 5px 0;
+    }
+
+    .header-center .clock {
+        font-size: 0.9rem; /* Proportionally reduce clock size */
+        margin: 3px 0;
+    }
+
+    .header-right .social-icons {
+        margin-top: 5px; /* Adjust spacing */
+    }
+
+    .header-right .social-icons a {
+        font-size: 1rem; /* Resize icons proportionately */
+        margin: 0 3px;   /* Reduce spacing between icons */
+    }
+}
+
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)); /* Transparent black gradient */
+    position: sticky;
+    top: 0;
+    width: 100%; /* Full width across all screen sizes */
+    z-index: 100;
+    display: flex;
+    justify-content: center; /* Adjust for the menu icon */
+    align-items: center;
+    padding: 7px 14px; /* Adjust padding for spacing */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Links */
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure navbar content spans the full width */
+    box-sizing: border-box; /* Prevent overflow */
+}
+
+.navbar li {
+    margin: 0 10px; /* Margin between links */
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3rem; /* Adjusted font size */
+    font-weight: 500;
+    font-family: 'Recoleta', sans-serif;
+    padding: 10px 20px; /* Adjust padding for better spacing */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box; /* Prevent overflow */
+}
+
+.navbar a:hover {
+    background-color: #8cb3a8; /* Light Green */
+    color: #fff;
+    border-radius: 8px;
+}
+
+/* Hamburger Menu Icon */
+.menu-icon {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.menu-icon .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: flex; /* Show the menu icon on smaller screens */
+    }
+
+    .navbar ul {
+        display: none; /* Hide the menu initially */
+        flex-direction: column;
+        gap: 10px; /* Adjusted gap for spacing */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%; /* Full width across small screens */
+        padding: 14px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        box-sizing: border-box; /* Prevent overflow */
+    }
+
+    .navbar ul.active {
+        display: flex; /* Show the menu when active */
+    }
+
+    .navbar li {
+        margin: 4px 0;
+        text-align: center;
+    }
+
+    .navbar a {
+        width: 100%; /* Make sure the links take up the full width */
+        padding: 12px 0; /* Adjust padding */
+        box-sizing: border-box; /* Prevent overflow */
+    }
+}
+
+/* Full width for all screen sizes */
+@media screen and (min-width: 320px) {
+    .navbar {
+        width: 100%; /* Ensure full width on small screens */
+    }
+}
+/* Header */
+.events-header {
+            text-align: center;
+            background-color: rgb(21, 88, 52,0.5);
+            color: #fff;
+            padding: 30px 20px;
+            height: 20vh;
+        }
+
+        .events-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .events-header p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        /* Events Container */
+        .events-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding: 50px 25px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .event-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+            border-left: 10px solid #178a02;
+            border-right: 10px solid #cfb106;
+        }
+
+        .event-container:hover {
+            transform: translateY(-7px);
+        }
+
+        .event-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Badge Styles */
+        .badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: 40px;
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            line-height: 40px;
+            transform: rotate(-45deg);
+            transform-origin: top left;
+            z-index: 10;
+        }
+
+        .badge-yellow {
+            background: #ffc107;
+        }
+
+        .badge-red {
+            background: #dc3545;
+        }
+
+        .event-content {
+            padding: 15px;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .event-title {
+            font-size: 2.0rem;
+            color: #155834;
+            margin-bottom: 1px;
+            font-family: 'Tangerine', cursive;
+            margin-top: 10px;
+        }
+
+        .event-details {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .details-btn {
+            display: inline-block;
+            padding: 10px 0;
+            background-color: #155834;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .details-btn:hover {
+            background-color: #0d4f2f;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: #222;
+            border: 5px solid;
+            border-image: linear-gradient(45deg, #ffdd00, #ff5500) 1;
+            width: 90%; /* Adjust to 90% for smaller screens */
+            max-width: 700px;
+            max-height: 80%; /* Ensure the content does not overflow vertically */
+            padding: 30px;
+            border-radius: 12px;
+            text-align: left; /* Align the text to the left */
+            color: #fff;
+            overflow-y: auto; /* Enable vertical scrolling if the content overflows */
+        }
+        
+        .modal-content strong {
+            color: #ffdd00;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffdd00;
+        }
+        
+        .close-btn:hover {
+            color: #fff;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%; /* Reduce the width further on small screens */
+                max-height: 70%; /* Limit the height to prevent excessive overflow */
+            }
+        }
+        
+
+        @media (min-width: 768px) {
+            .event-container {
+                flex-direction: row;
+            }
+
+            .event-container:nth-child(odd) {
+                flex-direction: row-reverse;
+            }
+
+            .event-container img {
+                width: 45%;
+            }
+
+            .event-content {
+                width: 55%;
+            }
+
+            .details-btn {
+                width: 30%;
+                font-size: 0.85rem;
+                padding: 8px 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+            .event-container img {
+                width: 100%;
+            }
+
+            .details-btn {
+                width: 30%;
+                align-self: center;
+            }
+        }
+
+
+
+
+        /* Feature Containers */
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            flex: 1 1 280px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 10px solid #cfb106;
+            border-right: 10px solid #178a02;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: #00ff77;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+    z-index: 999;
+}
+
+.whatsapp-button img {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .events-header h1 {
+                font-size: 2rem;
+            }
+
+            .events-header p, .feature-card p, .quote {
+                font-size: 1rem;
+            }
+
+            .event-card img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo, Business Name, Timer, and Social Media Icons -->
+    <header>
+        <div class="header-container">
+            <!-- Left: Logo and Company Name -->
+            <div class="header-left">
+                <img src="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1727341808/starkville_vslqfm.png" alt="Starkville Adventures Logo" class="logo">
+                <h1>Starkville Adventures</h1>
+            </div>
+
+            <!-- Center: Real-Time Clock -->
+            <div class="header-center">
+                <div id="clock" class="clock"></div> <!-- Real-Time Clock -->
+            </div>
+
+            <!-- Right: Social Media Icons -->
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/profile.php?id=61566137716599" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/starkvilleadventures?igsh=YzljYTk1ODg3Zg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@starkville.advent?_t=8qwrsPjZTGP&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="mailto:info@starkvilleadventures.co.ke"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <!-- Hamburger Menu Icon -->
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <!--navbar links-->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Hikes & Events</a></li>
+            <!--<li><a href="membership.html">Membership</a></li>-->
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="tnc.html">Terms and Conditions</a></li>
+        </ul>
+    </nav>
+    <!-- Header Section -->
+    <header class="events-header">
+        <h1>Upcoming Events</h1>
+        <p>Join us on our next adventures and make memories of a lifetime.</p>
+    </header>
+
+    <div class="events-container">
+        <!-- Events will be dynamically populated -->
+    </div>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">Event Details</h2>
+            <p class="modal-details"></p>
+        </div>
+    </div>
+
+    <!-- Feature Containers -->
+    <section class="features-container">
+        <div class="feature-card">
+            <h3>Experienced Guides</h3>
+            <p>Our team of experienced guides ensures your adventure is both safe and unforgettable.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Tailored Experiences</h3>
+            <p>Choose from a variety of experiences tailored to suit your interests, whether it's hiking, camping, or safaris.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Memories for a Lifetime</h3>
+            <p>Our goal is to provide experiences that leave lasting memories for you and your loved ones.</p>
+        </div>
+    </section>
+
+    
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+254789861332" class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+        <!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <!-- Useful Links -->
+        <div class="footer-column">
+            <h3>Useful Links</h3>
+            <ul>
+                <li><a href="refund.html">Refund Policy</a></li>
+                <li><a href="tnc.html">Terms and Conditions</a></li>
+                <li><a href="login.html">Membership</a></li>
+                <li><a href="faqs.html">FAQ'S</a></li>
+                <li><a href="https://chat.whatsapp.com/J034m55UMaICsRsxAOEfUq">Join our Whatsapp group</a></li>
+                <li><a href="">---</a></li>
+            </ul>
+            <h4>***</h4>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="footer-column newsletter">
+            <h3>Subscribe to our Newsletter</h3>
+            <form>
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer-column contact-info">
+            <h3>Contact Us</h3>
+            <p>Call or SMS: <a href="tel:+254789861332">0789861332</a></p>
+            <p>Location: Nairobi, Kenya</p>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/profile.php?id=61566137716599" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/starkvilleadventures?igsh=YzljYTk1ODg3Zg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@starkville.advent?_t=8qwrsPjZTGP&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="mailto:info@starkvilleadventures.co.ke"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Information -->
+    <div class="footer-bottom">
+        <p>&copy; 2025 Starkville Industries. rights reserved</p>
+    </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const events = [
+            { id: "warrior", title: "Sleeping Warrior", date: "02/02/2025", price: "3200", img: "https://res.cloudinary.com/dwpr0xrjq/image/upload/v1735884617/ugali_hills_oadyt7.jpg", slots: 70, activities: "Scenic hikes, guided tours, and sunset photography.", difficulty: "Challenging", details: `
+        Prepare for an exhilarating adventure at Sleeping Warrior, one of Kenya's most awe-inspiring mountains. Known for its distinctive silhouette that resembles a sleeping warrior, this hike takes you through rugged terrain with panoramic views that will leave you in awe.
+        <br><strong>Fun Fact:</strong> The Sleeping Warrior mountain is part of the Great Rift Valley, and its unique shape has intrigued many for centuries. The mountain is believed to have been named by the local Kikuyu people, who saw the image of a warrior lying in a resting position.
+        <br><br>The hike is challenging, designed for those who are looking for a real adventure. Expect steep climbs, rocky paths, and breathtaking views from the summit. As you conquer the peaks, you'll feel a sense of accomplishment as the stunning landscape of the Rift Valley unfolds before your eyes.
+    ` },
+            { id: "karura", title: "Karura Forest Adventure", date: "22/02/2025", price: "500", img: "https://res.cloudinary.com/dwpr0xrjq/image/upload/v1737112775/karura_zpf8uc.jpg", slots: 0, activities: "Nature walks, jogging, biking, and birdwatching.", difficulty: "Easy", details: `
+        Escape to the serene and beautiful Karura Forest, an urban oasis located just a short distance from Nairobi’s bustling city center. This lush forest offers an incredible blend of tranquility and adventure, making it the perfect destination for nature lovers of all ages.
+        <br><strong>Fun Fact:</strong> Karura Forest has a rich history — it was once a key location in Kenya’s struggle for independence, and today it stands as a symbol of conservation and community efforts. The forest is managed by the Friends of Karura Forest, a group dedicated to preserving its beauty and biodiversity.
+        <br><br>This easy to moderate nature trail offers a variety of scenic paths, from quiet forest walks to stunning waterfalls and expansive bamboo groves. With over 50 kilometers of trails, there’s always something new to explore, whether you're a seasoned hiker or just looking for a peaceful escape.
+        <br><br>Karura Forest provides the perfect blend of history, nature, and adventure — making it a must-visit destination for anyone in Nairobi or beyond. Don’t forget to pack your camera for some unforgettable photos!
+    ` },
+    { id: "suswa", title: "Mt. Suswa Hike", date: "22/03/2025", price: "3300", img: "https://res.cloudinary.com/dwpr0xrjq/image/upload/v1735884626/suswa_ko6eox.jpg", slots: 0, activities: "Guided hikes, cave exploration, and scenic photography.", difficulty: "Moderate", details: `
+        Get ready to conquer the stunning Mt. Suswa, one of Kenya’s most impressive volcanic peaks. Known for its dramatic landscapes and unique geological features, this hike offers an unforgettable adventure through rugged terrain and volcanic caves.
+        <br><strong>Fun Fact:</strong> Mt. Suswa is home to a large population of baboons, making it a great spot for wildlife lovers as well as hikers! The mountain's double crater system is rare and offers some of the best panoramic views in Kenya.
+        <br><br>The hike itself is moderate to challenging, making it ideal for adventurers looking for a thrilling experience. As you ascend, you’ll pass through rocky paths, steep inclines, and enjoy sweeping views of the Great Rift Valley. The summit offers a perfect opportunity to take in the vast beauty of the valley below.
+    ` },
+    { id: "longonot", title: "Mt. Longonot", date: "19/04/2025", price: "2000", img: "https://res.cloudinary.com/dwpr0xrjq/image/upload/v1737112775/longonot_u3pwfq.jpg", slots: 5, activities: "Trail hiking, wildlife spotting, and crater tours.", difficulty: "Challenging", details: `
+        Prepare for an adventure like no other at Mt. Longonot, one of Kenya’s most iconic volcanic mountains! Standing tall with its striking crater and panoramic views, Mt. Longonot is a must-see for anyone looking for a thrilling hiking experience.
+        <br><strong>Fun Fact:</strong> Mt. Longonot erupted around 5000 years ago, and today, it still stands as a symbol of Kenya’s geological power. The mountain is also one of the most challenging climbs in the Great Rift Valley, rewarding adventurers with spectacular views of the surrounding landscapes.
+        <br><br>Whether you’re an experienced hiker or a first-time adventurer, Mt. Longonot offers an unforgettable journey, with stunning views, diverse wildlife, and a chance to conquer one of Kenya’s most fascinating natural landmarks.
+    ` },
+    { id: "kimakia", title: "Kimakia Forest", date: "07/06/2025", price: "1800", img: "https://res.cloudinary.com/dwpr0xrjq/image/upload/v1737112775/KIMAKIA_yym3t8.jpg", slots: 20, activities: "Forest walks, birdwatching, and relaxation.", difficulty: "Easy", details: `
+        Step into the serene beauty of Kimakia Forest, a hidden gem nestled in the lush hills of central Kenya. This enchanting forest offers a peaceful retreat into nature, with towering trees, vibrant birdlife, and an untouched atmosphere that makes it a perfect escape from the busy world.
+        <br><strong>Fun Fact:</strong> Kimakia Forest is home to rare species of plants and animals, many of which are found only in this unique ecosystem. The forest has also long been a source of inspiration for local communities, who have used its rich resources for generations.
+        <br><br>The nature trail here is moderate, making it ideal for anyone who enjoys a leisurely walk surrounded by the sights and sounds of nature. Whether you’re seeking a calm escape or hoping to reconnect with the outdoors, Kimakia Forest offers a peaceful and immersive experience that you won't forget.
+        <br><br>Take a deep breath, explore the lush trails, and immerse yourself in the tranquility of one of Kenya’s best-kept natural secrets.
+    ` },
+    
+    
+    { id: "rua", title: "Rua Nyoni Falls", date: "09/08/2025", price: "2500", img: "https://res.cloudinary.com/dwpr0xrjq/image/upload/v1737112775/RUA_gyiwbl.jpg", slots: 10, activities: "Trekking, waterfall viewing, and picnics.", difficulty: "Easy", details: `
+        Discover the breathtaking beauty of Rua Nyoni Falls, one of Kenya's hidden gems, tucked away in a peaceful forest setting. Known for its pristine waters and scenic surroundings, this nature trail offers the perfect escape for those looking to connect with nature in a tranquil environment.
+        <br><strong>Fun Fact:</strong> The falls are nestled in an ancient forest, which is believed to have been a sacred site for early Kenyan communities. The sound of the cascading water and the lush vegetation make it a serene retreat for those seeking peace and relaxation.
+        <br><br>The trail is easy to moderate, making it perfect for nature lovers of all ages. As you walk along the well-maintained paths, you’ll experience the beauty of native trees, colorful birdlife, and the soothing sounds of the waterfall. Whether you're taking photos, enjoying a picnic, or simply soaking in the natural surroundings, Rua Nyoni Falls offers a rejuvenating experience.
+    ` },
+    
+        ];
+
+        const eventsContainer = document.querySelector('.events-container');
+        const today = new Date();
+
+        events.forEach(event => {
+            const eventDate = new Date(event.date.split('/').reverse().join('-'));
+            const bookingDeadline = new Date(eventDate);
+            bookingDeadline.setDate(bookingDeadline.getDate() - 7);
+
+            const slotsPercentage = event.slots;
+            let badgeClass = "badge";
+            if (slotsPercentage >= 90) badgeClass = "badge-red";
+            else if (slotsPercentage >= 70) badgeClass = "badge-yellow";
+
+            eventsContainer.innerHTML += `
+                <div class="event-container">
+                    <div class="${badgeClass}">${slotsPercentage === 100 ? "Fully Booked" :(slotsPercentage >= 70 && slotsPercentage <= 80) ? "Limited Slots" :(slotsPercentage >= 81 && slotsPercentage <= 99) ? "Less than 10 Slots" :`${slotsPercentage}% Slots`}</div>
+                    <img src="${event.img}" alt="${event.title}">
+                    <div class="event-content">
+                        <h2 class="event-title">${event.title}</h2>
+                        <p class="event-details">Date: ${event.date} | Price: ${event.price} Ksh</p>
+                        <p class="event-details">Booking Deadline: ${bookingDeadline.toLocaleDateString()}</p>
+                        <button class="details-btn" data-type="${event.id}">Details</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        const modal = document.getElementById('event-modal');
+
+        // Event Details
+        document.querySelectorAll('.details-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const eventId = button.getAttribute('data-type');
+                const event = events.find(e => e.id === eventId);
+
+                if (event) {
+                    modal.querySelector('.modal-title').textContent = event.title;
+                    modal.querySelector('.modal-details').innerHTML = `
+                        
+                        <strong>Location:</strong> ${event.title}<br>
+                <strong>Activities:</strong> ${event.activities}<br>
+                <strong>Difficulty:</strong> ${event.difficulty}<br>
+                <br><strong>Event Details:</strong><br>${event.details}
+                    `;
+                    modal.style.display = 'flex';;
+                }
+            });
+        });
+
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    });
+
+
+    function toggleMenu() {
+            const navLinks = document.querySelector('.navbar ul');
+            navLinks.classList.toggle('active');
+        }
+    // Real-time Clock functionality
+    function updateClock() {
+            const now = new Date();
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const dateString = now.toLocaleDateString('en-US', options);
+            
+            document.getElementById('clock').textContent = `${dateString} - ${timeString}`;
+        }
+
+        setInterval(updateClock, 1000); // Update clock every second
+        updateClock(); // Initial call to set clock
+</script>
+</body>
+</html>
