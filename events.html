@@ -736,7 +736,7 @@
         events.forEach(event => {
             const eventDate = new Date(event.date.split('/').reverse().join('-'));
             const bookingDeadline = new Date(eventDate);
-            bookingDeadline.setDate(bookingDeadline.getDate() - 7);
+            paymentDeadline.setDate(paymentDeadline.getDate() - 7);
 
             const slotsPercentage = event.slots;
             let badgeClass = "badge";
@@ -750,7 +750,7 @@
                     <div class="event-content">
                         <h2 class="event-title">${event.title}</h2>
                         <p class="event-details">Date: ${event.date} | Price: ${event.price} Ksh</p>
-                        <p class="event-details">Booking Deadline: ${bookingDeadline.toLocaleDateString()}</p>
+                        <p class="event-details">Payment Deadline: ${paymentDeadline.toLocaleDateString()}</p>
                         <button class="details-btn" data-type="${event.id}">Details</button>
                     </div>
                 </div>
