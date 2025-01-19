@@ -735,7 +735,7 @@
 
         events.forEach(event => {
             const eventDate = new Date(event.date.split('/').reverse().join('-'));
-            const bookingDeadline = new Date(eventDate);
+            const paymentDeadline = new Date(eventDate);
             paymentDeadline.setDate(paymentDeadline.getDate() - 7);
 
             const slotsPercentage = event.slots;
