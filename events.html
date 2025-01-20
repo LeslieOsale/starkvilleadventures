@@ -734,38 +734,17 @@
         const today = new Date();
 
         events.forEach(event => {
-    if (event.date && /^\d{2}\/\d{2}\/\d{4}$/.test(event.date)) {
-        const eventDate = new Date(event.date.split('/').reverse().join('-'));
-        
-        if (!isNaN(eventDate.getTime())) {
-            const paymentDeadline = new Date(eventDate);
-            paymentDeadline.setDate(paymentDeadline.getDate() - 7);
+    const eventDate = new Date(event.date.split('/').reverse().join('-'));
+    const paymentDeadline = new Date(eventDate);
+    paymentDeadline.setDate(paymentDeadline.getDate() - 7);
 
-            // Format the deadline to dd/mm/yyyy
-            const formattedDeadline = paymentDeadline.toLocaleDateString('en-GB');
-            
-            // Calculate days left until deadline
-            const today = new Date();
-            const timeDiff = paymentDeadline - today;
-            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    const formattedDeadline = paymentDeadline.toLocaleDateString('en-GB');
+    const daysLeft = Math.ceil((paymentDeadline - new Date()) / (1000 * 60 * 60 * 24));
 
-            if (daysLeft > 0) {
-                console.log(`Payment deadline: ${formattedDeadline}`);
-                console.log(`Deadline in ${daysLeft} days`);
-            } else if (daysLeft === 0) {
-                console.log(`Payment deadline: ${formattedDeadline}`);
-                console.log(`Deadline is today!`);
-            } else {
-                console.log(`Payment deadline: ${formattedDeadline}`);
-                console.log(`Deadline has passed`);
-            }
-        } else {
-            console.error(`Invalid date: ${event.date}`);
-        }
-    } else {
-        console.error(`Date format error: ${event.date}`);
-    }
+    console.log(`Payment deadline: ${formattedDeadline}`);
+    console.log(daysLeft > 0 ? `Deadline in ${daysLeft} days` : daysLeft === 0 ? 'Deadline is today!' : 'Deadline has passed');
 });
+
 
 
             const slotsPercentage = event.slots;
