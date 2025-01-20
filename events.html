@@ -734,9 +734,39 @@
         const today = new Date();
 
         events.forEach(event => {
-            const eventDate = new Date(event.date.split('/').reverse().join('-'));
+    if (event.date && /^\d{2}\/\d{2}\/\d{4}$/.test(event.date)) {
+        const eventDate = new Date(event.date.split('/').reverse().join('-'));
+        
+        if (!isNaN(eventDate.getTime())) {
             const paymentDeadline = new Date(eventDate);
             paymentDeadline.setDate(paymentDeadline.getDate() - 7);
+
+            // Format the deadline to dd/mm/yyyy
+            const formattedDeadline = paymentDeadline.toLocaleDateString('en-GB');
+            
+            // Calculate days left until deadline
+            const today = new Date();
+            const timeDiff = paymentDeadline - today;
+            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            if (daysLeft > 0) {
+                console.log(`Payment deadline: ${formattedDeadline}`);
+                console.log(`Deadline in ${daysLeft} days`);
+            } else if (daysLeft === 0) {
+                console.log(`Payment deadline: ${formattedDeadline}`);
+                console.log(`Deadline is today!`);
+            } else {
+                console.log(`Payment deadline: ${formattedDeadline}`);
+                console.log(`Deadline has passed`);
+            }
+        } else {
+            console.error(`Invalid date: ${event.date}`);
+        }
+    } else {
+        console.error(`Date format error: ${event.date}`);
+    }
+});
+
 
             const slotsPercentage = event.slots;
             let badgeClass = "badge";
