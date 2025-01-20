@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upcoming Events | Starkville Adventures</title>
+    <!-- Meta Tags for Specific Events -->
+<meta name="description" content="Sleeping Warrior Adventure - Date: 02/02/2025 | Price: 3200 Ksh | Payment Deadline: 26/01/2025. Secure your slot today!">
+<meta name="description" content="Karura Forest Adventure - Date: 22/02/2025 | Price: 500 Ksh | Payment Deadline: 15/02/2025. Enjoy an unforgettable forest trek!">
+<meta name="description" content="Mt. Suswa Hike - Date: 22/03/2025 | Price: 3300 Ksh | Payment Deadline: 15/03/2025. Join us for a thrilling mountain adventure!">
+<meta name="description" content="Mt. Longonot Hike - Date: 19/04/2025 | Price: 2000 Ksh | Payment Deadline: 12/04/2025. Hike through scenic trails and enjoy breathtaking views.">
+<meta name="description" content="Kimakia Forest Exploration - Date: 07/06/2025 | Price: 1800 Ksh | Payment Deadline: 31/05/2025. Experience nature at its best.">
+<meta name="description" content="Rua Nyoni Falls Trip - Date: 09/08/2025 | Price: 2500 Ksh | Payment Deadline: 02/08/2025. Discover the hidden gems of nature.">
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:title" content="Starkville Adventures - Explore Kenya's Best Destinations">
+<meta property="og:description" content="Join us on amazing adventures across Kenya with experienced guides, tailored experiences, and unforgettable memories.">
+<meta property="og:image" content="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1727341808/starkville_vslqfm.png">
+<meta property="og:url" content="https://www.starkvilleadventures.co.ke">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Starkville Adventures - Outdoor Experiences in Kenya">
+<meta name="twitter:description" content="From hiking to safaris, explore Kenya with us and create memories for a lifetime.">
+<meta name="twitter:image" content="https://res.cloudinary.com/dwpr0xrjq/image/upload/v1727341808/starkville_vslqfm.png">
+
+<!-- Additional Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4CAF50">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <!-- Add Google Font for Business Name and Disco Clock -->
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
@@ -734,16 +758,22 @@
         const today = new Date();
 
         events.forEach(event => {
-    const eventDate = new Date(event.date.split('/').reverse().join('-'));
+    // Split and reformat the date to YYYY-MM-DD for compatibility
+    const eventDateParts = event.date.split('/');
+    const eventDate = new Date(`${eventDateParts[2]}-${eventDateParts[1]}-${eventDateParts[0]}`);
+
+    // Calculate payment deadline (7 days before event)
     const paymentDeadline = new Date(eventDate);
     paymentDeadline.setDate(paymentDeadline.getDate() - 7);
 
-    const formattedDeadline = paymentDeadline.toLocaleDateString('en-GB');
-    const daysLeft = Math.ceil((paymentDeadline - new Date()) / (1000 * 60 * 60 * 24));
-
-    console.log(`Payment deadline: ${formattedDeadline}`);
-    console.log(daysLeft > 0 ? `Deadline in ${daysLeft} days` : daysLeft === 0 ? 'Deadline is today!' : 'Deadline has passed');
-});
+    // Function to format date as dd/mm/yyyy
+    function formatDateToDDMMYYYY(date) {
+        const day = (`0${date.getDate()}`).slice(-2);
+        const month = (`0${date.getMonth() + 1}`).slice(-2);  // Months are 0-based
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+        
 
 
 
@@ -759,7 +789,7 @@
                     <div class="event-content">
                         <h2 class="event-title">${event.title}</h2>
                         <p class="event-details">Date: ${event.date} | Price: ${event.price} Ksh</p>
-                        <p class="event-details">Payment Deadline: ${paymentDeadline.toLocaleDateString()}</p>
+                        <p class="event-details">Payment Deadline: ${formatDateToDDMMYYYY(paymentDeadline)}</p>
                         <button class="details-btn" data-type="${event.id}">Details</button>
                     </div>
                 </div>
